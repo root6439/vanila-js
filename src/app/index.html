@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Formulário</title>
+  </head>
+  <body>
+    <script>
+      function cadastrarUsuario() {
+        let field = document.getElementById("nome");
+
+        field.value = "Thiago";
+        let p = document.createElement("p");
+        let message = document.createTextNode("Olá " + field.value);
+        p.appendChild(message);
+
+        let content = document.getElementById("content");
+        content.appendChild(p);
+
+        let button = document.getElementById("cadastrar");
+        button.disabled = true;
+
+        setTimeout(function () {
+          button.disabled = false;
+          p.innerHTML = "";
+        }, 3000);
+      }
+    </script>
+
+    <div id="content">
+      <label for="nome">Insira seu nome:</label>
+      <input type="text" id="nome" />
+
+      <button onclick="cadastrarUsuario()" id="cadastrar">Cadastrar</button>
+    </div>
+  </body>
+</html>
