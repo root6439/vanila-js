@@ -1,47 +1,39 @@
-// let form = document.querySelector("form");
-// let buttonSubmit = document.getElementById("button-submit");
+function getById(id) {
+  return document.getElementById(id);
+}
 
-// function addAndRemoveClass(element, classToAdd, classToRemove) {
-//   element.classList.add(classToAdd);
-//   element.classList.remove(classToRemove);
-// }
+function createItem(title, description) {
+  return ` 
+        <div>
+            <h3>${title}</h3>
+            <p>${description}</p>
+        </div>
+        <input type="checkbox" class="checkbox" onclick="checkItem(event)"/>
+    `;
+}
 
-// function formSubmited(evt) {
-//   evt.preventDefault();
-//   console.log(evt);
+let form = document.querySelector("form");
 
-//   let name = evt.target[0];
-//   let age = evt.target[1];
-//   let email = evt.target[2];
+form.addEventListener("submit", insertTask);
 
-//   let errorMessages = document.getElementsByClassName("text-danger");
+function insertTask(evt) {
+  evt.preventDefault();
 
-//   console.log(errorMessages);
-//   if (name.value === "") {
-//     name.className = "input-error";
-//     addAndRemoveClass(errorMessages[0], "d-block", "d-none");
-//   }
-//   if (age.value === "") {
-//     age.className = "input-error";
-//     addAndRemoveClass(errorMessages[1], "d-block", "d-none");
-//   }
-//   if (email.value === "") {
-//     email.className = "input-error";
-//     addAndRemoveClass(errorMessages[2], "d-block", "d-none");
-//   }
-// }
+  let title = getById("title").value;
+  let description = getById("description").value;
 
-// form.addEventListener("submit", formSubmited);
+  let list = document.querySelector("ul");
 
-// buttonSubmit.disabled = true;
-// form.addEventListener("input", (evt) => {
-//   let nameValid = document.getElementById("name").checkValidity();
-//   let ageValid = document.getElementById("age").checkValidity();
-//   let emailValid = document.getElementById("email").checkValidity();
+  let newItem = document.createElement("li");
+  newItem.innerHTML = createItem(title, description);
+  newItem.classList = "list-item";
 
-//   if (nameValid && emailValid && ageValid) {
-//     buttonSubmit.disabled = false;
-//   } else {
-//     buttonSubmit.disabled = true;
-//   }
-// });
+  list.appendChild(newItem);
+
+  form.reset();
+}
+
+function checkItem(evt) {
+  evt.srcElement.disabled = true;
+  evt.srcElement.parentElement.classList.add("task-done");
+}

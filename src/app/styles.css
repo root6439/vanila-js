@@ -25,3 +25,25 @@ body {
 .d-block {
   display: block;
 }
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 16px 0;
+}
+
+.list-item h3,
+p {
+  margin: 0;
+}
+
+.task-done {
+  text-decoration: line-through;
+  color: rgba(118, 118, 118, 0.3);
+  cursor: default;
+}

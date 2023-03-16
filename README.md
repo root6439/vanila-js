@@ -1,0 +1,1 @@
+Projeto feito usando VanillaJS para correção dos exercícios
